@@ -456,125 +456,6 @@ gg.send({embed : new Discord.RichEmbed()
 })
  
 
-client.on('guildMemberAdd', member => {
-  if(!ar[member.guild.id]) ar[member.guild.id] = {
-  onoff: 'Off',
-  role: 'Member'
-  }
-  if(ar[member.guild.id].onoff === 'Off') return;
-member.addRole(member.guild.roles.find(`name`, ar[member.guild.id].role)).catch(console.error)
-})
- 
-client.on('message', message => {
-  var sender = message.author
- 
-if(!message.guild) return
-  if(!ar[message.guild.id]) ar[message.guild.id] = {
-  onoff: 'Off',
-  role: 'Member'
-  }
- 
-if(message.content.startsWith(`+autorole`)) {
-         
-  let perms = message.member.hasPermission(`MANAGE_ROLES`)
- 
-  if(!perms) return message.reply(`You don't have permissions, required permission : Manage Roles.`)
-  let args = message.content.split(" ").slice(1)
-  if(!args.join(" ")) return message.reply(`${prefix}autorole toggle / set [ROLE NAME]`)
-  let state = args[0]
-  if(!state.trim().toLowerCase() == 'toggle' || !state.trim().toLowerCase() == 'setrole') return message.reply(`Please type a right state, ${prefix}modlogs toggle/setrole [ROLE NAME]`)
-    if(state.trim().toLowerCase() == 'toggle') {
-     if(ar[message.guild.id].onoff === 'Off') return [message.channel.send(`**The Autorole Is __𝐎𝐍__ !**`), ar[message.guild.id].onoff = 'On']
-     if(ar[message.guild.id].onoff === 'On') return [message.channel.send(`**The Autorole Is __𝐎𝐅𝐅__ !**`), ar[message.guild.id].onoff = 'Off']
-    }
-   if(state.trim().toLowerCase() == 'set') {
-   let newRole = message.content.split(" ").slice(2).join(" ")
-   if(!newRole) return message.reply(`${prefix}autorole set [ROLE NAME]`)
-     if(!message.guild.roles.find(`name`,newRole)) return message.reply(`I Cant Find This Role.`)
-    ar[message.guild.id].role = newRole
-     message.channel.send(`**The AutoRole Has Been Changed to ${newRole}.**`)
-   }
-         }
-if(message.content === '!info') {
-    let perms = message.member.hasPermission(`MANAGE_GUILD`)
-    if(!perms) return message.reply(`You don't have permissions.`)
-    var embed = new Discord.RichEmbed()
- 
-.addField(`Autorole : :sparkles:  `, `
-State : __${ar[message.guild.id].onoff}__
-Role : __${ar[message.guild.id].role}__`)
- 
- 
-    .setColor(`BLUE`)
-    message.channel.send({embed})
-  }
- 
- 
-    fs.writeFile("./AutoRole.json", JSON.stringify(ar), (err) => {
-    if (err) console.error(err)
-  });
- 
- 
-});
-
-client.on("message", (message) => {
-    /// ALPHA CODES
-   if (message.content.startsWith("+ticket")) {     /// ALPHA CODES
-        const reason = message.content.split(" ").slice(1).join(" ");     /// ALPHA CODES
-        if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`This server doesn't have a \`Support Team\` role made, so the ticket won't be opened.\nIf you are an administrator, make one with that name exactly and give it to users that should be able to see tickets.`);
-        if (message.guild.channels.exists("name", "ticket-{message.author.id}" + message.author.id)) return message.channel.send(`You already have a ticket open.`);    /// ALPHA CODES
-        message.guild.createChannel(`ticket-${message.author.username}`, "text").then(c => {
-            let role = message.guild.roles.find("name", "Support Team");
-            let role2 = message.guild.roles.find("name", "@everyone");
-            c.overwritePermissions(role, {
-                SEND_MESSAGES: true,
-                READ_MESSAGES: true
-            });    /// ALPHA CODES
-            c.overwritePermissions(role2, {
-                SEND_MESSAGES: false,
-                READ_MESSAGES: false
-            });
-            c.overwritePermissions(message.author, {
-                SEND_MESSAGES: true,
-                READ_MESSAGES: true
-            });
-            message.channel.send(`:white_check_mark: **تم إنشاء تذكرتك ، #${c.name}.**`);
-            const embed = new Discord.RichEmbed()
-                .setColor(0xCF40FA)
-                .addField(`مرحباّ ${message.author.username}!`, `يرجى محاولة شرح سبب فتح هذه التذكرة بأكبر قدر ممكن من التفاصيل. سيكون فريق الدعم لدينا قريبا للمساعدة.`)
-                .setTimestamp();
-            c.send({
-                embed: embed
-            });
-        }).catch(console.error);
-    }
- 
- 
-  if (message.content.startsWith("+close")) {
-        if (!message.channel.name.startsWith(`ticket-`)) return message.channel.send(`You can't use the close command outside of a ticket channel.`);
- 
-        message.channel.send(`هل أنت متأكد؟ بعد التأكيد ، لا يمكنك عكس هذا الإجراء!\n للتأكيد ، اكتب\`$confirm\`. سيؤدي ذلك إلى مهلة زمنية في غضون 10 ثوانٍ وإلغائها`)
-            .then((m) => {
-                message.channel.awaitMessages(response => response.content === '+confirm', {
-                        max: 1,
-                        time: 10000,
-                        errors: ['time'],
-                    })    /// ALPHA CODES
-                    .then((collected) => {
-                        message.channel.delete();
-                    })    /// ALPHA CODES
-                    .catch(() => {
-                        m.edit('Ticket close timed out, the ticket was not closed.').then(m2 => {
-                            m2.delete();
-                        }, 3000);
-                    });
-            });
-    }
- 
-});
-    /// ALPHA CODES
- 
-
 
 
 client.login(process.env.BOT_TOKEN);// لا تغير فيها شيء
