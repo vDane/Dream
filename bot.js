@@ -441,7 +441,7 @@ if(!gg) return;
 if(gg) {
 gg.send({embed : new Discord.RichEmbed()
 .setDescription(`**  الاسم :question:  : \n ${lan}\nالعمر :link: :\n ${md} \n ماذا تستطيع ان تقدم للسيرفر :question: :\n ${br}  \nتم التقديم بواسطة  : <@${message.author.id}> **`)  
-          .setFooter(`ادارة سيرفر R'evenge Shop`)
+          .setFooter(`ادارة سيرفر DeathWorld`)
 .setTimestamp()
 });
 }        
