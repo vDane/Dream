@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-var prefix = "^";
+var prefix = "$";
 client.on('message', message => { // Leaked by [ @M3a4x ]
    if(!message.channel.guild) return;
 if(message.content.startsWith(prefix + 'bc')) {
@@ -50,7 +50,7 @@ msg.delete();
 });
 
   client.on('message', message => {
-    if (message.content.startsWith("^Link")) {
+    if (message.content.startsWith("$Link")) {
 
   message.channel.createInvite({
         thing: true,
@@ -70,7 +70,7 @@ message.author.send(`**مدة الرابط : يـوم
 
 
 client.on('message', function(message) {
-    if (message.content == "^clear") {
+    if (message.content == "#clear") {
         if (message.member.hasPermission("MANAGE_MESSAGES")) {
             message.channel.fetchMessages()
                .then(function(list){
@@ -82,7 +82,7 @@ client.on('message', function(message) {
 });
 
   client.on('message', message => {
-      if(message.content.startsWith ("^marry")) {
+      if(message.content.startsWith ("$marry")) {
       if(!message.channel.guild) return message.reply('** This command only for servers **')
       var proposed = message.mentions.members.first()
      
@@ -111,7 +111,7 @@ message.channel.awaitMessages(filte, { max: 1, time: 15000, errors: ['time'] })
 });
 
 client.on('message',  (message) => {
-        if(message.content.startsWith('^kf')) {
+        if(message.content.startsWith('$kf')) {
   let user = message.mentions.users.first();
   if (!user) {
 
@@ -142,7 +142,7 @@ client.on('message',  (message) => {
 
 client.on('message', message => {
 
-    if (message.content === "^mc") {
+    if (message.content === "$mc") {
                         if(!message.channel.guild) return message.reply(' هذا الامر فقط للسيرفرات !!');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
@@ -153,7 +153,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' لي
                message.reply("تم تقفيل الشات ? ")
            });
              }
-if (message.content === "^umc") {
+if (message.content === "$umc") {
     if(!message.channel.guild) return message.reply(' هذا الامر فقط للسيرفرات !!');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات');
@@ -171,7 +171,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('لي�
 
 
 client.on('message', message => {
-    if (message.content.startsWith("^hacked")) {
+    if (message.content.startsWith("$hacked")) {
       if (message.author.bot) return
            message.delete();
              let args = message.content.split(' ').slice(1);
@@ -287,7 +287,7 @@ client.on('message', message =>{
 
 client.on('message', message =>{
     let args = message.content.split(' ');
-    let prefix = '^'; //تقدر تغير البرفكس
+    let prefix = '$'; //تقدر تغير البرفكس
     
     if(args[0] === `${prefix}avatar`){
         let mentions = message.mentions.members.first()
@@ -310,7 +310,7 @@ client.on('message', message =>{
 });
 
 client.on('message', message => {
-    if (message.content.startsWith("^bans")) {
+    if (message.content.startsWith("$bans")) {
         message.guild.fetchBans()
         .then(bans => message.channel.send(`${bans.size} عدد اشخاص المبندة من السيرفر `))
   .catch(console.error);
@@ -318,7 +318,7 @@ client.on('message', message => {
 });
 
 client.on("message", (message) => {
-if (message.content.startsWith("^ct")) {
+if (message.content.startsWith("$ct")) {
             if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
         let args = message.content.split(" ").slice(1);
     message.guild.createChannel(args.join(' '), 'text');
@@ -327,7 +327,7 @@ message.channel.sendMessage('تـم إنـشاء روم كـتابـي')
 }
 });
 client.on("message", (message) => {
-if (message.content.startsWith("^cv")) {
+if (message.content.startsWith("$cv")) {
             if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
         let args = message.content.split(" ").slice(1);
     message.guild.createChannel(args.join(' '), 'voice');
@@ -358,7 +358,7 @@ client.on('message',async message => {
   
   
 client.on('message', message => {
-    var prefix = "^";
+    var prefix = "$";
 if(!message.channel.guild) return;
 if(message.content.startsWith(prefix + 'move')) {
  if (message.member.hasPermission("MOVE_MEMBERS")) {
@@ -419,7 +419,7 @@ message.channel.send(`**:white_check_mark: ${user.tag} banned from the server ! 
 
 
 client.on('message', message => {
-const prefix = "^";
+const prefix = "$";
   if (message.author.kick) return;
   if (!message.content.startsWith(prefix)) return;
 
@@ -575,7 +575,7 @@ if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return mess
 
 
   client.on('message', message => {
-    if (message.content === "^rooms") {
+    if (message.content === "$rooms") {
                       if (!message.guild) return;
 
         var channels = message.guild.channels.map(channels => `${channels.name}, `).join(' ')
@@ -591,7 +591,7 @@ if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return mess
 
 
 client.on('message', message => {
-    if (message.content === "^roles") {
+    if (message.content === "$roles") {
         var roles = message.guild.roles.map(roles => `${roles.name}, `).join(' ')
         const embed = new Discord.RichEmbed()
         .setColor('RANDOM')
@@ -600,7 +600,7 @@ client.on('message', message => {
     }
 });
 client.on('message' , message => {
-  var prefix = "^";
+  var prefix = "$";
   if(message.author.bot) return;
   if(message.content.startsWith(prefix + "ping")) {
  message.channel.send('Pong...').then((msg) => {
@@ -629,7 +629,7 @@ if(!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('
 
  
 client.on('message', message => {
-    const prefix = '-'
+    const prefix = '$'
 var args = message.content.split(" ").slice(1);    
 if(message.content.startsWith(prefix + 'id')) {
 var year = message.author.createdAt.getFullYear()
@@ -674,7 +674,7 @@ message.channel.send({embed});
 
 client.on("message", (message) => {
     /// ALPHA CODES
-   if (message.content.startsWith("^new")) {     /// ALPHA CODES
+   if (message.content.startsWith("$new")) {     /// ALPHA CODES
         const reason = message.content.split(" ").slice(1).join(" ");     /// ALPHA CODES
         if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`لازم تسوي رتبة اسمها \`Support Team\` وتنطي البوت ادمنيتر حتا يقدر يسوي الرومات ويعدل برمشنات`);
         if (message.guild.channels.exists("name", "ticket-{message.author.id}" + message.author.id)) return message.channel.send(`You already have a ticket open.`);    /// ALPHA CODES
@@ -705,12 +705,12 @@ client.on("message", (message) => {
     }
  
  
-  if (message.content.startsWith("^close")) {
+  if (message.content.startsWith("$close")) {
         if (!message.channel.name.startsWith(`ticket-`)) return message.channel.send(`You can't use the close command outside of a ticket channel.`);
  
-       message.channel.send(`هل انت متأكد من اقفالك للتذكرة اذا متأكد اكتب ^confirm`)
+       message.channel.send(`هل انت متأكد من اقفالك للتذكرة اذا متأكد اكتب $confirm`)
            .then((m) => {
-               message.channel.awaitMessages(response => response.content === '^confirm', {
+               message.channel.awaitMessages(response => response.content === '$confirm', {
                        max: 1,
                        time: 10000,
                        errors: ['time'],
@@ -736,14 +736,14 @@ client.on('ready', () => {
       console.log(`ON ${client.guilds.size} Servers '     Script By : EX Clan ' `);
     console.log(`----------------`);
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`^help | DJ Dam System`,"http://twitch.tv/DJ")
+client.user.setGame(`$help | DJ Dam System`,"http://twitch.tv/DJ")
 client.user.setStatus("dnd")
 });
  
  
  
 client.on('message' , message => {
-if(message.content === '^help') {
+if(message.content === '$help') {
   var EsTeKnAN = new Discord.RichEmbed()
   .setColor('RANDOM')
 message.author.send(`
