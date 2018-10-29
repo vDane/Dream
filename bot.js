@@ -610,6 +610,25 @@ client.on('message' , message => {
  });
  
 client.on('message', message => {
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+  if (command == "say") {
+if(!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('?|**\`ADMINISTRATOR\`ليس لديك صلاحيات`**');
+
+
+   message.channel.sendMessage(args.join("  "))
+   message.delete()
+  }
+ });
+
+ 
+client.on('message', message => {
     const prefix = '-'
 var args = message.content.split(" ").slice(1);    
 if(message.content.startsWith(prefix + 'id')) {
@@ -655,7 +674,7 @@ message.channel.send({embed});
 
 client.on("message", (message) => {
     /// ALPHA CODES
-   if (message.content.startsWith("+new")) {     /// ALPHA CODES
+   if (message.content.startsWith("^new")) {     /// ALPHA CODES
         const reason = message.content.split(" ").slice(1).join(" ");     /// ALPHA CODES
         if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`لازم تسوي رتبة اسمها \`Support Team\` وتنطي البوت ادمنيتر حتا يقدر يسوي الرومات ويعدل برمشنات`);
         if (message.guild.channels.exists("name", "ticket-{message.author.id}" + message.author.id)) return message.channel.send(`You already have a ticket open.`);    /// ALPHA CODES
@@ -686,12 +705,12 @@ client.on("message", (message) => {
     }
  
  
-  if (message.content.startsWith("+close")) {
+  if (message.content.startsWith("^close")) {
         if (!message.channel.name.startsWith(`ticket-`)) return message.channel.send(`You can't use the close command outside of a ticket channel.`);
  
-       message.channel.send(`هل انت متأكد من اقفالك للتذكرة اذا متأكد اكتب +confirm`)
+       message.channel.send(`هل انت متأكد من اقفالك للتذكرة اذا متأكد اكتب ^confirm`)
            .then((m) => {
-               message.channel.awaitMessages(response => response.content === '+confirm', {
+               message.channel.awaitMessages(response => response.content === '^confirm', {
                        max: 1,
                        time: 10000,
                        errors: ['time'],
