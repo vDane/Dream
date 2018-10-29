@@ -57,7 +57,7 @@ client.on('ready', () => {
       console.log(`ON ${client.guilds.size} Servers '     Script By : EX Clan ' `);
     console.log(`----------------`);
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`Last System`,"http://twitch.tv/R'evenge Shop")
+client.user.setGame(`DJ DaM System`,"http://twitch.tv/DJDaMSystem")
 client.user.setStatus("dnd")
 });
 
@@ -466,7 +466,7 @@ if(!gg) return;
 if(gg) {
 gg.send({embed : new Discord.RichEmbed()
 .setDescription(`**  الاسم :question:  : \n ${lan}\nالعمر :link: :\n ${md} \n ماذا تستطيع ان تقدم للسيرفر :question: :\n ${br}  \nتم التقديم بواسطة  : <@${message.author.id}> **`)  
-          .setFooter(`ادارة سيرفر Last`)
+          .setFooter(`ادارة سيرفر DJ DaM`)
 .setTimestamp()
 });
 }        
